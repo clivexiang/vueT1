@@ -1,7 +1,7 @@
 FROM node:6.10.3-slim
-RUN apt-get install -y nginx
+RUN mkdir /app/ -p
 WORKDIR /app
 COPY . /app/
-EXPOSE 80
-RUN  npm install     && npm run build      && cp -r dist/* /var/www/html      && rm -rf /app
-CMD ["nginx","-g","daemon off;"]
+RUN  npm install     
+RUN npm run build         
+CMD npm run dev
