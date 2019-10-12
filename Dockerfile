@@ -5,11 +5,11 @@ COPY package.json /app/package.json
 RUN npm install 
 
 COPY . /app
-RUN npm run dev
+RUN npm run build
 
 FROM nginx:alpine
 
-COPY --from=builder /app/docs/* /usr/share/nginx/html/
+COPY --from=builder /app/dist/* /usr/share/nginx/html/
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
